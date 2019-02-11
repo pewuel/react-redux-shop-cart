@@ -29,6 +29,17 @@ const config = {
                 value: 'DESC'
             }
         ]
+    },
+    cookie: {
+        EXPIRE_IN_DAYS: 2,
+        paths: {
+            'cart.products': {
+                name: 'cart_products'
+            },
+            'cart.quantity': {
+                name: 'cart_quantity'
+            }
+        }
     }
 };
 
