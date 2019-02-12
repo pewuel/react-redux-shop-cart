@@ -15,23 +15,26 @@ const cart = (state = initialState, action) => {
             const index = state.products.indexOf(action.payload);
 
             if (index > -1) {
-                return Object.assign({}, state, {
-                    quantity: Object.assign({}, state.quantity,{
+                return {
+                    ...state,
+                    quantity: {
+                        ...state.quantity,
                         [action.payload]: state.quantity[action.payload] + 1
-                    })
-                })
+                    }
+                }
             }
 
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 products: [
                     ...state.products,
                     action.payload
                 ],
-                quantity: Object.assign({},{
+                quantity: {
                     ...state.quantity,
                     [action.payload]: 1
-                })
-            });
+                }
+            };
 
         }
 
@@ -39,20 +42,22 @@ const cart = (state = initialState, action) => {
         case types.REMOVE_FROM_CART: {
 
             if (state.quantity[action.payload] === 1) {
+
                 delete state.quantity[action.payload];
 
-                return Object.assign({}, state, {
+                return {
+                    ...state,
                     products: state.products.filter(item => item !== action.payload),
-                    quantity: state.quantity
-                });
+                }
             }
 
-            return Object.assign({}, state, {
-                quantity: Object.assign({},{
+            return {
+                ...state,
+                quantity: {
                     ...state.quantity,
                     [action.payload]: state.quantity[action.payload] - 1
-                })
-            });
+                }
+            }
         }
 
 
